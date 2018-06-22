@@ -2,9 +2,9 @@
 ```
 docker build -t nginx-gopl-zh .
 ```
-# run docker container
+# Run docker container
 ```
-docker run -itd --name -p 80:80 nginx-gopl-zh nginx-gopl-zh
+docker run -itd --name nginx-gopl-zh -p 81:80 nginx-gopl-zh
 ```
 
 # Build gopl-zh from source

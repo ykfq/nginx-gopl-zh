@@ -1,4 +1,4 @@
-FROM centos:7.4.1708
+FROM centos:7.5.1804
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
@@ -18,7 +18,6 @@ RUN yum -y install nginx-${APP_VERSION} && \
 
 ADD conf/nginx.conf /etc/nginx/
 ADD conf/conf.d/ /etc/nginx/conf.d/
-ADD conf/conf.d.stream /etc/nginx/conf.d.stream/
 
 EXPOSE 80
 
