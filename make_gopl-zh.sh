@@ -2,7 +2,7 @@
 
 BASEDIR=$(cd $(dirname $0)/../; pwd -P)
 GOPL_DIR=${BASEDIR}/gopl-zh
-GOPL_GIT=git@github.com:gopl-zh/gopl-zh.github.com.git
+GOPL_GIT=https://github.com/gopl-zh/gopl-zh.github.com.git
 
 type -a node 2>/dev/null 1>&2
 if [[ $? = 0 ]]; then
