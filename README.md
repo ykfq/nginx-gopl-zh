@@ -11,10 +11,10 @@ docker build -t nginx-gopl-zh .
 
 # Run docker container
 ```
-docker run -itd --name nginx-gopl-zh nginx-gopl-zh
+docker run -itd --name nginx-gopl-zh -p 80:80 nginx-gopl-zh
 ```
 
-# Build gopl-zh from source
+# Build gopl-zh from source for the first time
 ```
 bash make_gopl-zh.sh
 ```
