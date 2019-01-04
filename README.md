@@ -6,12 +6,12 @@
 
 # Build docker image
 ```
-docker build -t nginx-gopl-zh .
+docker build -t ykfq/nginx-gopl-zh .
 ```
 
 # Run docker container
 ```
-docker run -itd --name nginx-gopl-zh -p 80:80 nginx-gopl-zh
+docker run -itd --name nginx-gopl-zh -p 81:80 ykfq/nginx-gopl-zh
 ```
 
 # Build gopl-zh from source for the first time

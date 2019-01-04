@@ -4,7 +4,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-ARG APP_VERSION=1.12.2
+ARG APP_VERSION=1.14.2-1.el7_4
 ENV APP_VERSION=${APP_VERSION}
 
 RUN \
@@ -12,7 +12,7 @@ RUN \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     yum -y install epel-release net-tools iproute bind-utils telnet wget
 
-RUN yum -y install nginx-${APP_VERSION} && \
+RUN yum -y install https://nginx.org/packages/centos/7/x86_64/RPMS/nginx-${APP_VERSION}.ngx.x86_64.rpm && \
     rm -rf /var/cache/yum && \
     rm -rf /root/*
 
