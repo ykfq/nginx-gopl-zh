@@ -4,6 +4,7 @@ BASEDIR=$(cd $(dirname $0)/; pwd -P)
 GOPL_DIR=${BASEDIR}/gopl-zh
 GOPL_GIT=https://github.com/gopl-zh/gopl-zh.github.com.git
 
+source /etc/profile
 type -a node 2>/dev/null 1>&2
 if [[ $? = 0 ]]; then
   echo "[Info] node.js exists, the version is:"
@@ -75,9 +76,10 @@ else
 fi
 
 echo
-docker cp _book/ nginx-gopl-zh:/opt/
+mv _book gopl-zh
+docker cp gopl-zh nginx-gopl-zh:/opt/
 if [[ $? != 0 ]]; then
-  echo "[Error] docker cp _book to nginx-gopl-zh:/opt/ failed."
+  echo "[Error] docker cp _book to nginx-gopl-zh:/opt/_book/gopl-zh failed."
   exit 1
 else
   echo "[Info] docker cp succuessfully."
