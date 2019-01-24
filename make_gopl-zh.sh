@@ -79,7 +79,7 @@ echo
 mv _book gopl-zh
 docker cp gopl-zh nginx-gopl-zh:/opt/
 if [[ $? != 0 ]]; then
-  echo "[Error] docker cp _book to nginx-gopl-zh:/opt/_book/gopl-zh failed."
+  echo "[Error] docker cp gopl-zh nginx-gopl-zh:/opt/ failed."
   exit 1
 else
   echo "[Info] docker cp succuessfully."

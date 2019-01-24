@@ -22,9 +22,10 @@ else
 fi
 
 echo
-docker cp _book/ nginx-gopl-zh:/opt/
+mv _book gopl-zh
+docker cp gopl-zh nginx-gopl-zh:/opt/
 if [[ $? != 0 ]]; then
-    echo "docker cp _book to nginx-gopl-zh:/opt/ failed."
+    echo "docker cp gopl-zh nginx-gopl-zh:/opt/ failed."
     exit 1
 else
     echo "docker cp succuessfully."
