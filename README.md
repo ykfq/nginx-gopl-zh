@@ -1,17 +1,11 @@
 # Things will be done
-- Build a image of nginx that server nginx-gopl-zh
-- Run a nginx-gopl-zh container
-- Build gopl-zh from source (install go node.js gitbook etc.)
-- Add crontab to build gopl-zh daily
+- Build nginx container that serve nginx-gopl-zh
+- Build gopl-zh from source and mount `_book` to nginx container
+- Add daily crontab settings
 
 # Build docker image
 ```
-docker build -t ykfq/nginx-gopl-zh .
-```
-
-# Run docker container
-```
-docker run -itd --name nginx-gopl-zh -p 81:80 ykfq/nginx-gopl-zh
+docker-compose up --build -d
 ```
 
 # Build gopl-zh from source for the first time
@@ -21,13 +15,13 @@ bash make_gopl-zh.sh
 
 # Auto build gopl-zh daily
 ```
-bash add_crontab.sh
+scp make_gopl-zh.sh /etc/cron.daily
+chmod +x /etc/cron.daily
 ```
 # Access
 ```
-http://ip:80
+http://server_name:80
 
+# server_name can be found in nginx/conf.d/gopl.conf
 ```
-
-
 
