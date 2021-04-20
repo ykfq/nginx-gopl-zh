@@ -1,10 +1,13 @@
 #!/bin/bash
 
 BASEDIR=$(cd $(dirname $0)/; pwd -P)
-GOPL_DIR=${BASEDIR}/gopl-zh
+GOPL_DIR=${BASEDIR}/gopl-zh/gopl-zh
+GOPL_DIR_TMP=/tmp/gopl-zh
 GOPL_GIT=https://github.com/gopl-zh/gopl-zh.github.com.git
 
 source /etc/profile
+export PATH=$PATH:/usr/local/go/bin
+
 type -a node 2>/dev/null 1>&2
 if [[ $? = 0 ]]; then
   echo "[Info] node.js exists, the version is:"
@@ -59,21 +62,21 @@ else
   rm -f go${GO_VERSION}.linux-amd64.tar.gz
 fi
 
-echo
-[[ -d ${GOPL_DIR} ]] && rm -rf ${GOPL_DIR}
-mkdir ${GOPL_DIR} && cd $_
-git clone ${GOPL_GIT}
-if [[ $? != 0 ]]; then
-    echo "[Error] git clone ${GOPL_GIT} failed, exit."
-    exit 1
-else
-  echo
-  cd ${GOPL_DIR}/gopl-zh.github.com
+if [[ -d "${GOPL_DIR_TMP}/gopl-zh.github.com" ]]; then
+    cd ${GOPL_DIR_TMP}/gopl-zh.github.com && git pull
+else 
+    git clone ${GOPL_GIT} ${GOPL_DIR_TMP}/gopl-zh.github.com
+fi
+
+if [[ -d "${GOPL_DIR_TMP}/gopl-zh.github.com" ]]; then
+  cd ${GOPL_DIR_TMP}/gopl-zh.github.com
   gitbook install
   [[ $? != 0 ]] && echo "[Error] gitbook plugins for gopl-zh install failed." && exit 1
-  yum -y groupinstall "Development Tools"
-  export PATH=$PATH:/usr/local/go/bin
+  #yum -y groupinstall "Development Tools"
+  yum -y install gcc
   make
   [[ $? != 0 ]] && echo "[Error] make gopl-zh failed." && exit 1
-  mv ${GOPL_DIR}/gopl-zh.github.com/_book /opt/gopl-zh
+  rm -rf ${GOPL_DIR}
+  mv ${GOPL_DIR_TMP}/gopl-zh.github.com/_book ${GOPL_DIR}
 fi
+

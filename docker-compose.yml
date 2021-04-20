@@ -6,6 +6,8 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./gopl-zh:/opt/gopl-zh
     restart: always
+    container_name: nginx
     ports:
      - 80:80
