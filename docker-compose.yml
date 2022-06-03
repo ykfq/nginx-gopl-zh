@@ -4,7 +4,8 @@ services:
     # image: nginx:stable
     build: .
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      #- ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/opt/rh/rh-nginx116/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./gopl-zh:/opt/gopl-zh
     restart: always
